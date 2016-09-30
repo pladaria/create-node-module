@@ -1,13 +1,13 @@
 {
   "name": "create-node-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Creates a new npm module with all the boilerplate for transpiling, linting, publishing, testing, coverage, readme badges, etc.",
   "main": "create.sh",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin" : {
-    "create-node-module" : "./create.sh"
+  "bin": {
+    "create-node-module": "./create.sh"
   },
   "author": "Pedro Ladaria <pedro.ladaria@gmail.com>",
   "license": "MIT"

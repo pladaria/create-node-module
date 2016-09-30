@@ -12,7 +12,7 @@ Execute:
 
     create-node-module
 
-## Automaticall configures
+## Automatically configures
 
 - GitHub repo
 - AVA

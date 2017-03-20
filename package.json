@@ -1,8 +1,17 @@
 {
   "name": "create-node-module",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Creates a new npm module with all the boilerplate for transpiling, linting, publishing, testing, coverage, readme badges, etc.",
-  "main": "create.sh",
+  "contributors": [
+    "Pedro Ladaria <pedro.ladaria@gmail.com>",
+    "William Hilton <wmhilton@gmail.com>"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "preferGlobal": true,
+  "bin": {
+    "create-node-module": "dist/bin/cli.js"
+  },
   "keywords": [
     "create",
     "make",
@@ -21,11 +30,29 @@
     "generator"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "babel src --out-dir dist --watch",
+    "build": "babel src --out-dir dist"
   },
-  "bin": {
-    "create-node-module": "./create.sh"
+  "dependencies": {
+    "application-config-path": "^0.1.0",
+    "command-line-args": "^4.0.2",
+    "command-line-usage": "^4.0.0",
+    "ghauth": "^3.2.1",
+    "shelljs": "^0.7.7"
   },
-  "author": "Pedro Ladaria <pedro.ladaria@gmail.com>",
-  "license": "MIT"
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pladaria/create-node-module.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pladaria/create-node-module/issues"
+  },
+  "homepage": "https://github.com/pladaria/create-node-module#readme"
 }

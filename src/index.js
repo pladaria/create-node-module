@@ -2,10 +2,7 @@ import path from "path";
 import gitignore from "./gitignore.js";
 import babelrc from "./babelrc.js";
 
-const plugins = [
-    gitignore,
-    babelrc,
-];
+const plugins = [gitignore, babelrc];
 
 export default {
     async run(options) {

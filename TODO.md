@@ -4,7 +4,7 @@ TODOs
 - [ ] .travis.yml
 - [ ] ./src/index.js
 - [ ] ./test/test.js
-- [ ] LICENSE
+- [x] LICENSE
 - [ ] README.md
 - [ ] package.json
 - [ ] Create Github Repository

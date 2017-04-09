@@ -7,15 +7,22 @@ const prompt = createPromptModule();
 
 export default GitIgnore;
 
-async function GitIgnore() {
+async function GitIgnore(options) {
+    if (options.disabled.includes("gitignore")) return options;
+
     let choices = await pify(gitignore.getTypes)();
 
     let questions = [
-        { type: "confirm", name: "confirm", message: "Add .gitignore?", default: true },
+        {
+            type: "confirm",
+            name: "confirm",
+            message: "Add .gitignore?",
+            default: true
+        },
         {
             when: ans => ans.confirm,
             type: "list",
-            name: "type",
+            name: "lang",
             message: ".gitignore template",
             choices,
             default: choices.indexOf("Node"),
@@ -26,10 +33,10 @@ async function GitIgnore() {
     let answers = await prompt(questions);
     if (answers.confirm) {
         let out = fs.createWriteStream(".gitignore");
-        await pify(gitignore.writeFile)({ type: answers.type, writable: out });
+        await pify(gitignore.writeFile)({ type: answers.lang, writable: out });
         console.log("answers =", answers);
     }
-    return;
+    return options;
 }
 
 if (!module.parent) {

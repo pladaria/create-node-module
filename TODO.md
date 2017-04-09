@@ -1,0 +1,11 @@
+TODOs
+- [x] .gitignore
+- [x] .babelrc
+- [ ] .travis.yml
+- [ ] ./src/index.js
+- [ ] ./test/test.js
+- [ ] LICENSE
+- [ ] README.md
+- [ ] package.json
+- [ ] Create Github Repository
+- [ ] Setup Travis for npm deployment

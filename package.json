@@ -30,7 +30,7 @@
     "generator"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "prettier --write --print-width 140 --tab-width 4 src/**/*.js",
     "watch": "babel src --out-dir dist --watch",
     "build": "babel src --out-dir dist"
   },
@@ -45,7 +45,8 @@
     "babel-cli": "^6.24.0",
     "babel-plugin-transform-async-to-generator": "^6.22.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0"
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "prettier": "^0.22.0"
   },
   "repository": {
     "type": "git",

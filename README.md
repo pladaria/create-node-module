@@ -16,37 +16,24 @@ Creates a new npm module with all the boilerplate for transpiling, linting, publ
 - CI with travis
 - npm targets for building, publishing, linting, testing...
 
+## Configuration
+
+This module uses [`rc`](https://www.npmjs.com/package/rc) for loading default values. It supports many ways, including command line arguments, environment variables, and config files in INI or JSON. Read the `rc` page on npm for details.
+
+Here's an example config file you might use:
+
+```ini
+; $HOME/.create-node-modulerc
+license = MIT
+copyrightHolder = Your Name
+babelPresets[] = env
+babelPlugins[] = transform-es2015-modules-commonjs
+babelPlugins[] = transform-async-to-generator
+babelPlugins[] = transform-object-rest-spread
+```
+
 ## Usage
 
-    Usage:
-
-      cnm [-gcat] -n <name> -d <description>      Create a new module
-      cnm -u [-gcat] -n <name> -d <description>   Update the current module.
-      cnm --save-default -gt                      Enable Github and Travis by default
-      cnm --save-default -gcat                    Enable everything by default
-      cnm --save-default                          Disable everything by default
-
-    Options:
-
-      -h, --help                 Display this help message
-      -u, --update               Update the module in the working dir
-      -n, --name string          The name of your module
-      -d, --description string   A one-line project description
-      --dryrun                   Do a dry run
-      -g, --github               Create this repo on Github
-      -t, --travis               Setup Travis CI for this module
-      -a, --ava                  Setup Ava for tests
-      -c, --coveralls            Setup Coveralls for test coverage
-      --save-default             Modify the default values for -g -t -a -c
-
-## TODOs
-
-- [x] Initial prototype
-- [ ] Port from shell to JavaScript
-- [ ] Cache global values (like author name, email) in config file
-- [x] Add proper CLI parser
-- [ ] Make interactive with inquirer
-- [ ] Use [`update-readme`](https://github.com/update-readme/update-readme) to create default README
 
 ## Contributing
 

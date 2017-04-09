@@ -9,7 +9,6 @@ export default GitIgnore;
 
 async function GitIgnore() {
     let choices = await pify(gitignore.getTypes)();
-    choices.key = "e";
 
     let questions = [
         { type: "confirm", name: "confirm", message: "Add .gitignore?", default: true },

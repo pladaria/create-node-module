@@ -40,7 +40,7 @@ mkdir "$PROJECT"
 cd "$PROJECT"
 
 echo "Generating git repo..."
-dryrun || gh create-repo "$GITHUB_REPO" -d "$DESCRIPTION"
+dryrun || gh repo --new "$PROJECT" --description "$DESCRIPTION"
 git init
 git remote add origin "https://github.com/$GITHUB_REPO"
 echo "node_modules" > .gitignore
@@ -74,19 +74,9 @@ echo "'use strict'
 
 echo 'Generating README.md and LICENSE.md...'
 echo '
-<!-- TITLE -->
-<!-- BADGES -->
-<!-- DESCRIPTION -->
 
 ## Installation
 
-Download node at [nodejs.org](http://nodejs.org) and install it, if you haven'"'"'t already.
-
-Then in the terminal, run:
-
-```sh
-npm install '"$PROJECT"' --save
-```
 
 ## Tests
 
@@ -98,16 +88,38 @@ npm install
 npm test
 ```
 
-<!-- LICENSE -->
+## License
 
-_Parts of this file are based on [package-json-to-readme](https://github.com/zeke/package-json-to-readme)_
-
-_README.md (and other files) are maintained using [mos](https://github.com/mosjs/mos) and [projectz](https://github.com/bevry/projectz)_
 
 ' > README.md
-echo '<!-- LICENSEFILE/ -->
-<!-- /LICENSEFILE -->' > LICENSE.md
-projectz compile
+update-readme -p name-and-description -p installation -p license
+
+echo 'This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <http://unlicense.org>
+
+' > LICENSE.md
 
 if which travis &>/dev/null && [ ! -z "$NPM_PUBLISH_API_KEY" ]; then
   echo 'Generating .travis.yml...'
@@ -117,10 +129,11 @@ deploy:
   provider: npm
   email: $AUTHOR_EMAIL
   on:
-    node: node
+    skip_cleanup: true
     tags: true
     branch: master
     repo: $GITHUB_REPO" > .travis.yml
+  dryrun || travis login --github-token $GH_TOKEN
   dryrun || travis sync
   dryrun || travis enable
   dryrun || travis encrypt "$NPM_PUBLISH_API_KEY" --add deploy.api_key

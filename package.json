@@ -36,8 +36,10 @@
   },
   "dependencies": {
     "ghauth": "^3.2.1",
+    "github": "^9.2.0",
     "gitignore": "^0.6.0",
     "inquirer": "^3.0.6",
+    "mz": "^2.6.0",
     "pify": "^2.3.0",
     "rc": "^1.2.1",
     "spdx-license-list": "^3.0.1"

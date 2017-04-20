@@ -1,8 +1,17 @@
 {
   "name": "create-node-module",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Creates a new npm module with all the boilerplate for transpiling, linting, publishing, testing, coverage, readme badges, etc.",
-  "main": "create.sh",
+  "contributors": [
+    "Pedro Ladaria <pedro.ladaria@gmail.com>",
+    "William Hilton <wmhilton@gmail.com>"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "preferGlobal": true,
+  "bin": {
+    "create-node-module": "dist/bin/cli.js"
+  },
   "keywords": [
     "create",
     "make",
@@ -21,11 +30,33 @@
     "generator"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "prettier --write --print-width 140 --tab-width 4 src/**/*.js",
+    "watch": "babel src --out-dir dist --watch",
+    "build": "babel src --out-dir dist"
   },
-  "bin": {
-    "create-node-module": "./create.sh"
+  "dependencies": {
+    "ghauth": "^3.2.1",
+    "github": "^9.2.0",
+    "gitignore": "^0.6.0",
+    "inquirer": "^3.0.6",
+    "mz": "^2.6.0",
+    "pify": "^2.3.0",
+    "rc": "^1.2.1",
+    "spdx-license-list": "^3.0.1"
   },
-  "author": "Pedro Ladaria <pedro.ladaria@gmail.com>",
-  "license": "MIT"
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "prettier": "^0.22.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pladaria/create-node-module.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pladaria/create-node-module/issues"
+  },
+  "homepage": "https://github.com/pladaria/create-node-module#readme"
 }
